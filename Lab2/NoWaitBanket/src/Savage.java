@@ -10,7 +10,7 @@ public class Savage extends Thread {
 		while (true) {
 			if (Math.random() < 0.5) yield();
 			try {
-				//sleep((int) (200 * Math.random()));
+				sleep((int) (200 * Math.random()));
 				pot.getserving();
 			} catch (InterruptedException e) {};
 		}
