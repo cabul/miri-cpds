@@ -27,7 +27,7 @@ public class Pot {
 		}
 	}
 	
-	private void print_servings() {
+	private synchronized void print_servings() {
 		System.out.println("servings in the pot => " + servings);
 	}
 	
