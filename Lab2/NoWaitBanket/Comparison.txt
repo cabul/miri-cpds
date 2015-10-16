@@ -4,4 +4,4 @@ Comparison between Banket and NoWaitBanket:
 
 Advantages and disadvantages: 
 - Banket makes use of a queue to execute the threads in sequence, it's more correct, but it's more memory expensive.
-- NoWaitBanket just have a try each time until it can be executed. It's more light in memory consumption, but it can't execute the threads in sequence, which makes the logic mass. 
+- NoWaitBanket just have a try each time until it can be executed. It's more light in memory consumption, but it can't execute the threads in sequence, which makes the logic mess. 
