@@ -1,7 +1,52 @@
-Comparison between Banket and NoWaitBanket:
-- Banket use wait() and notifiAll() functions in synchronization mechanism. It use wait() to put waiting threads into a queue, if the thread can't be executed immediately, it will wait until someone notify it, and be executed sequentially. 
-- NoWaitBanket use if-else in synchronization mechanism. Every time the thread is called, it checks the condition in if-else, if the condition is true, then the thread is executed. If not, the thread will quit without doing anything. 
+Comparison between Banket and NoWaitBanket
+==========================================
 
-Advantages and disadvantages: 
-- Banket makes use of a queue to execute the threads in sequence, it's more correct, but it's more memory expensive.
-- NoWaitBanket just have a try each time until it can be executed. It's more light in memory consumption, but it can't execute the threads in sequence, which makes the logic mess. 
+Banket uses the wait() and notifyAll() functions in its synchronization mechanism.
+If the thread can't be executed immediately, wait() puts it into a queue.
+The thread will wait until someone notifies it, and then executes sequentially. 
+
+NoWaitBanket uses if-else in its synchronization mechanism.
+Every time the critical region is entered the condition is checked.
+If it is met (e.g. servings in pot), the thread continues its execution.
+In the other case the thread (savage) will quit without doing anything.
+
+Advantages and disadvantages
+----------------------------
+
+/*
+ * I actually don't think that memory consumption is the critical point here.
+ * In my opinion it's more about how the synchronization works.
+ * 
+ * What do you mean with messy logic?
+ */
+
+Banket makes use of a queue to execute the threads in sequence,
+This handles the coordination, but it's more memory expensive.
+
+In NoWaitBanket the threads try until they can be executed.
+It's more light in memory consumption, but it can't execute the threads in sequence, which makes the logic messy.
+
+In the normal Banket, the synchronization is handled by the Pot.
+Whenever a condition is not met, the thread waits, until it is woken up.
+This happens in an asynchronous manner. Furthermore we have control
+of when we want to wake up a thread with notify() or notifyAll().
+
+In the NoWaitBanket we don't have this control. It is more remeniscent
+of active polling. We basically have a lot of threads checking the condition
+and goint to sleep again, instead of notifying each one of them once a change
+has occured.
+
+Conclusion
+----------
+
+This example is very simple, but we have to think about correctness
+in a more complicated case. Let's consider for example, that after getting his
+serving a savage wants to brush his teeth.
+
+SAVAGE=(getserving -> brushteeth -> SAVAGE).
+
+In the case of NoWaitBanket the savage thread can return from getserving()
+and then proceed to brushteeth() without having eaten anything.
+
+So if getserving() is required to consume one serving, the solution in Banket
+is more accurate.
