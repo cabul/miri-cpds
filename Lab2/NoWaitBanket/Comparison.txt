@@ -18,18 +18,17 @@ Advantages and disadvantages
  * In my opinion it's more about how the synchronization works.
  * 
  * What do you mean with messy logic?
+ *
+ * Yes you're right. Memory consumption is mot the critical point, 
+ * It's just a disadvantage I think we can write down here. 
+ *
  */
-
-Banket makes use of a queue to execute the threads in sequence,
-This handles the coordination, but it's more memory expensive.
-
-In NoWaitBanket the threads try until they can be executed.
-It's more light in memory consumption, but it can't execute the threads in sequence, which makes the logic messy.
 
 In the normal Banket, the synchronization is handled by the Pot.
 Whenever a condition is not met, the thread waits, until it is woken up.
 This happens in an asynchronous manner. Furthermore we have control
 of when we want to wake up a thread with notify() or notifyAll().
+But since it keeps all waiting threads in memory, it's more memory expensive. 
 
 In the NoWaitBanket we don't have this control. It is more remeniscent
 of active polling. We basically have a lot of threads checking the condition
