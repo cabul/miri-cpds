@@ -13,17 +13,6 @@ In the other case the thread (savage) will quit without doing anything.
 Advantages and disadvantages
 ----------------------------
 
-/*
- * I actually don't think that memory consumption is the critical point here.
- * In my opinion it's more about how the synchronization works.
- * 
- * What do you mean with messy logic?
- *
- * Yes you're right. Memory consumption is mot the critical point, 
- * It's just a disadvantage I think we can write down here. 
- *
- */
-
 In the normal Banket, the synchronization is handled by the Pot.
 Whenever a condition is not met, the thread waits, until it is woken up.
 This happens in an asynchronous manner. Furthermore we have control
