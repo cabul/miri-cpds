@@ -13,6 +13,7 @@ public class Account {
 		// Only withdraw if enough money left
 		while (balance <= amount) {
 			System.out.println("Not enough money (" + Thread.currentThread().getName() + ")");
+			// Instead of waiting we could also not withdraw (-> NoWaitBanket)
 			wait();
 		}
 		balance -= amount;
