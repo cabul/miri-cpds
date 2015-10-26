@@ -45,9 +45,14 @@ progress ENTER2 = {n2.enter} //NEIGHBOUR 2 always gets to enter
 ||GREEDY = FIELD << {n1.flag1.setTrue, n2.flag2.setTrue}.
 
 /*
-If we give high priority to both neighbors to set theirs flags with true value, 
-both of them will not manke any progress to enter. 
 
-Because the two sub-processes will check the value of the flag at the same time, and get the same "true" result. 
-And this circumstance will last forever because the concurrency of the two sub-processes. 
+The problem with the greedy neightbours is an example of a livelock.
+
+If we give high priority to both neighbors to raise their flag (set value to true),
+none of them will make any progress.
+
+The two sub-processes (neighbours) will check the value of the flag at the same time.
+They get the same result ("true") and will not enter.
+This situation will last forever due to the concurrency of the two sub-processes. 
+
 */
