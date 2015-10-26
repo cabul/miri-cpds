@@ -15,10 +15,13 @@ public class Neighbour extends Thread {
 				String name = Thread.currentThread().getName() ;
 				System.out.println("try again, my name is: "+ name);
 			
+				// Different behaviour if the neighbour is greedy
 				if (this.greedy) {
+					// This will cause a live lock
 					flag.set_true(name);               
 					Thread.sleep((int)(200*Math.random()));
 				} else {
+					// This works fine
 					Thread.sleep((int)(200*Math.random()));
 					flag.set_true(name);               
 				}
