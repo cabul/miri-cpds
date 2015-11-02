@@ -17,7 +17,7 @@ public class Neighbour extends Thread {
 			
 				// Different behaviour if the neighbour is greedy
 				if (this.greedy) {
-					// This will cause a live lock
+					// This caused a live lock
 					flag.set_true(name);               
 					Thread.sleep((int)(200*Math.random()));
 				} else {

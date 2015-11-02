@@ -11,7 +11,7 @@ public class Flag {
 	}
 
 	public synchronized boolean query_flag(String s) {
-		//no condition synchronization is needed
+		// Query turn
 		if (s.equals("alice") && turn==2 ) 
 			return flag_bob;
 		else if(s.equals("bob") && turn==1)
@@ -20,7 +20,7 @@ public class Flag {
 	}
 
 	public synchronized void set_true(String s) {
-		//no condition synchronization is needed
+		// Set turn
 		if (s.equals("alice")) { 
 			flag_alice = true;
 			turn = 2;
@@ -31,7 +31,6 @@ public class Flag {
 	}
 
 	public synchronized void set_false(String s) {
-		//no condition synchronization is needed
 		if (s.equals("alice")) { 
 			flag_alice = false;
 		} else {
