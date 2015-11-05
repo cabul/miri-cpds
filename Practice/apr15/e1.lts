@@ -1,0 +1,4 @@
+COOK = (put_in -> cook -> take_out -> COOK).
+SET_HEAT = (put_in -> set_heat -> cook -> SET_HEAT).
+SET_TIME = (put_in -> set_time -> cook -> SET_TIME).
+||MICROWAVE = (COOK || SET_HEAT || SET_TIME).

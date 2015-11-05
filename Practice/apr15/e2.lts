@@ -1,0 +1,5 @@
+const N = 2	
+property LIFTCAPACITY = LIFT[0],
+LIFT[i:0..N] = ( when (i > 0) exit -> LIFT[i-1]
+               | when (i < N) enter -> LIFT[i+1]
+).
